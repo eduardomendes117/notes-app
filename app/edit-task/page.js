@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation"; 
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa6";
 import { MdDeleteForever } from "react-icons/md";
 
-export default function AddTask() {
+function AddTaskContent() {
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [tasks, setTasks] = useState([]);
@@ -52,8 +52,8 @@ export default function AddTask() {
       // Salva no localStorage
       localStorage.setItem("tasks", JSON.stringify(updatedTasks));
 
-      // Redireciona para a lista de tarefas (utilizando uma navegação do App Router)
-      window.location.href = "/"; // Redireciona diretamente para a página de tarefas
+      // Redireciona para a lista de tarefas
+      window.location.href = "/"; 
     } else {
       alert("Preencha todos os campos!");
     }
@@ -77,7 +77,7 @@ export default function AddTask() {
       <div className="flex items-center justify-between mb-10">
         <span
           onClick={() => (window.location.href = "/")}
-          className="left-5 text-2xl lg:text-3xl  hover:bg-white/10 rounded-full p-2"
+          className="left-5 text-2xl lg:text-3xl hover:bg-white/10 rounded-full p-2"
         >
           <FaArrowLeft />
         </span>
@@ -85,14 +85,14 @@ export default function AddTask() {
         <div className="flex gap-3 items-center">
           <span
             onClick={handleDeleteTask}
-            className="left-5 text-2xl lg:text-3xl  hover:bg-white/10 rounded-full p-2"
+            className="left-5 text-2xl lg:text-3xl hover:bg-white/10 rounded-full p-2"
           >
             <MdDeleteForever />
           </span>
 
           <span
             onClick={handleSaveTask}
-            className="left-5 text-2xl lg:text-3xl  hover:bg-white/10 rounded-full p-2"
+            className="left-5 text-2xl lg:text-3xl hover:bg-white/10 rounded-full p-2"
           >
             <FaCheck />
           </span>
@@ -113,5 +113,13 @@ export default function AddTask() {
         className="block w-full p-3 mb-3 min-h-svh rounded-lg bg-white/10 text-white"
       />
     </div>
+  );
+}
+
+export default function AddTask() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AddTaskContent />
+    </Suspense>
   );
 }

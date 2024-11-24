@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation"; // Usando useSearchParams
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa6";
 
-export default function AddTask() {
+function AddTaskContent() {
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [tasks, setTasks] = useState([]);
@@ -62,15 +62,15 @@ export default function AddTask() {
     <div className="flex flex-col min-h-screen p-5 max-w-screen-xl mx-auto">
       <div className="flex justify-between mb-10">
         <span
-        onClick={() => (window.location.href = "/")}
-          className="left-5 text-2xl lg:text-3xl  hover:bg-white/10 rounded-full p-2"
+          onClick={() => (window.location.href = "/")}
+          className="left-5 text-2xl lg:text-3xl hover:bg-white/10 rounded-full p-2"
         >
           <FaArrowLeft />
         </span>
 
         <span
           onClick={SalvarTask}
-          className="left-5 text-2xl lg:text-3xl  hover:bg-white/10 rounded-full p-2"
+          className="left-5 text-2xl lg:text-3xl hover:bg-white/10 rounded-full p-2"
         >
           <FaCheck />
         </span>
@@ -90,5 +90,13 @@ export default function AddTask() {
         className="block w-full p-3 mb-3 min-h-svh rounded-lg bg-white/10 text-white"
       />
     </div>
+  );
+}
+
+export default function AddTask() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AddTaskContent />
+    </Suspense>
   );
 }
