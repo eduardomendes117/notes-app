@@ -20,7 +20,7 @@ export default function Home() {
 
         <Task/>
 
-        <Link id="btn-add-task" href="/add-task" className="fixed bottom-5 lg:bottom-10 text-4xl lg:text-5xl shadow-xl bg-yellow-500 hover:bg-yellow-600 rounded-full">
+        <Link id="btn-add-task" href="/add-task" className="fixed bottom-5 lg:bottom-10 text-5xl shadow-xl bg-yellow-500 hover:bg-yellow-600 rounded-full">
           <IoIosAdd />
         </Link>
       </main>
