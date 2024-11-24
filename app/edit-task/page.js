@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-// import { useSearchParams } from "next/navigation"; // Usando useSearchParams
+import { useSearchParams } from "next/navigation"; 
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa6";
 import { MdDeleteForever } from "react-icons/md";
@@ -10,7 +10,7 @@ export default function AddTask() {
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [tasks, setTasks] = useState([]);
-  // const searchParams = useSearchParams();
+  const searchParams = useSearchParams();
   const editIndex = searchParams.get("edit")
     ? parseInt(searchParams.get("edit"))
     : null; // Pegando o parâmetro 'edit'

@@ -18,7 +18,7 @@ export default function Tasks() {
         {tasks.map((task, index) => (
           <li
             key={index}
-            className="rounded-xl flex flex-col gap-2 bg-white/10 w-full lg:w-64 p-4 mb-3"
+            className="rounded-xl flex flex-col gap-2 bg-white/10 w-full min-w-44 lg:w-64 p-4 mb-3"
           >
             <h2 className="text-2xl flex justify-between">{task.title} <Link href={`/edit-task?edit=${index}`}><FiEdit/></Link></h2>
             <p className="text-base text-white/50">{task.description}</p>

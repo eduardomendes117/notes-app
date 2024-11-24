@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-// import { useSearchParams } from "next/navigation"; // Usando useSearchParams
+import { useSearchParams } from "next/navigation"; // Usando useSearchParams
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa6";
 
@@ -9,7 +9,7 @@ export default function AddTask() {
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [tasks, setTasks] = useState([]);
-  // const searchParams = useSearchParams();
+  const searchParams = useSearchParams();
   const editIndex = searchParams.get("edit")
     ? parseInt(searchParams.get("edit"))
     : null; // Pegando o parâmetro 'edit'
@@ -26,7 +26,7 @@ export default function AddTask() {
     }
   }, [editIndex]);
 
-  const handleSaveTask = () => {
+  const SalvarTask = () => {
     if (taskTitle && taskDescription) {
       const newTask = {
         title: taskTitle,
@@ -69,7 +69,7 @@ export default function AddTask() {
         </span>
 
         <span
-          onClick={handleSaveTask}
+          onClick={SalvarTask}
           className="left-5 text-2xl lg:text-3xl  hover:bg-white/10 rounded-full p-2"
         >
           <FaCheck />
